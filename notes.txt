@@ -1,0 +1,12 @@
+Virtual environment is the place where all your app dependencies are stored at one please
+every time we want to run our app
+venv should be active 
+installing also make sure venv is activated
+
+
+
+installing 
+importing
+initialize
+configuration 
+integration
