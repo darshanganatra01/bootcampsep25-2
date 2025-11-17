@@ -6,12 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>This is login page</h2>
+     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <h2>This is Theatre login page</h2>
     
     <hr>
     <br>
 
-    <form action="/login" method="post">
+    <form action="/theatre_login" method="post">
         Email : <input type="email" name="email">
         <br>
         <br>

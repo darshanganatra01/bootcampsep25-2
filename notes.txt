@@ -10,3 +10,52 @@ importing
 initialize
 configuration 
 integration
+
+
+
+
+
+
+
+Private Theatre Project
+
+3 roles ----> Customer,Theatre,Admin
+
+1. user and role tables 
+2. create theatre CRUD
+3. CRUD Booking 
+
+
+One user ---> One Theatre slot
+Its a private theatre so more than one user cant book the same 
+Admin willl create theatres 
+
+
+User -- Role
+
+User --> username/email password Role
+1     darshan@gmail.com   12345   Admin
+2.    om@gmail.com        23456   Customer
+
+
+
+Customer--> Customer contact --> state  f.k uid 2 
+1.     94343548034   Guj    2
+
+
+
+
+Theatre --> franchise --> location
+
+
+
+
+
+app context ---> stores current runnning app information
+request context ---> user specific session information request information and etc
+
+
+
+Take pen and paper draw ur model draw the connections 
+and then integrate it with ur app
+

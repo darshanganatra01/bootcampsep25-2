@@ -15,16 +15,28 @@
             </ul>
         {% endif %}
     {% endwith %}
-    <h2>Welcome to the landing page</h2>
-
-    <a href="/customer_login">Go to Customer login</a>
-    <br>
-    <a href="/admin_login">Go to Admin login</a>
-    <br>
-    <a href="/theatre_login">Go to theatre Login</a>
-    <br>
-    <a href="/signup">Go to signup</a>
+    <h2>This is Customer login page</h2>
     
+    <hr>
+    <br>
+
+    <form action="/customer_login" method="post">
+        Email : <input type="email" name="email">
+        <br>
+        <br>
+        Password : <input type="password" name="password">
+        <br>
+        <br>
+        <input type="submit" value="Login">
+        </br>
+    </form>zz
+
+
+    <br>
+    <hr>
+    <a href="/">Go to landing</a>
+
+
 
 </body>
 </html>

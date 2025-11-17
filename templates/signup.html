@@ -6,7 +6,36 @@
     <title>Document</title>
 </head>
 <body>
+     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <h2>This is signup page</h2>
+
+    <form action="/signup" method="post">
+        Email : <input type="email" name="email">
+        <br>
+        <br>
+        Password : <input type="password" name="password">
+        <br>
+        <br>
+        Name : <input type="text" name="name">
+        <br>
+        <br>
+        Age : <input type="number" name="age">
+        <br>
+        <br>
+        <input type="submit" value="Register">
+        </br>
+    </form>zz
+
+
+
     <a href="/">Go to landing</a>
 </body>
 </html>
