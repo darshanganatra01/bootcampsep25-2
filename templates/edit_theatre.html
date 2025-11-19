@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Edit Theatre page</h2>
+    <form action="/edit_theatre/{{theatre.id}}" method="post">
+        Theatre Name : <input type="text" name="theatre_name" value={{theatre.theatre_name}} >
+        <br>
+        <br>
+        Location : <input type="text" name="location" value={{theatre.location}}>
+        <br>
+        <br>
+        Franchise : <input type="text" name="franchise" value={{theatre.franchise}} >
+        <br>
+        <br>
+        <input type="submit" value="Update Theatre">
+</body>
+</html>

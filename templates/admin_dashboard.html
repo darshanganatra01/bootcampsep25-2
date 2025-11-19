@@ -16,5 +16,19 @@
         {% endif %}
     {% endwith %}
     <h3>Admin Dashboard</h3>
+
+
+   <h4>List of Theatres</h4>
+    <ul>
+        {% for theatre in theatres %}
+            <li>{{ theatre.theatre_name }} - {{ theatre.location }} - {{ theatre.franchise }}</li>
+            <a href="/edit_theatre/{{theatre.id}}">Edit Theatre</a>
+            <a href="/delete_theatre/{{theatre.id}}">Delete Theatre</a>
+        {% endfor %}
+    </ul> 
+    <hr>
+    <a href="/create_theatre">Create New Theatre</a>
+
+
 </body>
 </html>

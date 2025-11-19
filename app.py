@@ -219,12 +219,84 @@ def dashboard():
     elif role == "theatre":
         return render_template("theatre_dashboard.html")
     elif role == "admin":
-        return render_template("admin_dashboard.html")
+        theatres = Theatre.query.all()
+        return render_template("admin_dashboard.html",theatres=theatres)
     else:
         print("user had not logged in")
         return redirect('/landing')
     
 
+@app.route('/create_theatre',methods=["GET","POST"])
+def create_theatre():
+    role = session.get("role")
+    if role != "admin":
+        flash("only admin can create theatre accounts")
+        return redirect('/')
+    if request.method == "GET":
+        return render_template('create_theatre.html')
+    else:
+        form_email = request.form.get("email")
+        form_password = request.form.get("password")
+        form_theatre_name = request.form.get("theatre_name")
+        form_location = request.form.get("location")
+        form_franchise = request.form.get("franchise")
+
+        #i am going to check if that user exists in the database or not
+
+        user_exist = User.query.filter_by(email=form_email).first()
+        if user_exist:
+            flash("User Already exiists please use different email id")
+            return redirect('/create_theatre')
+        else:
+            new_user = User(email=form_email,password=form_password,role="theatre")
+            db.session.add(new_user)
+            db.session.commit()
+            flash("Theatre User created successfully")
+
+            new_theatre = Theatre(theatre_name=form_theatre_name,location=form_location,franchise=form_franchise,
+            owner_id=new_user.id)
+            db.session.add(new_theatre)
+            db.session.commit()
+            flash("Theatre created successfully")
+
+            return redirect('/dashboard')
+
+@app.route('/edit_theatre/<theatre_id>',methods=["GET","POST"])
+def edit_theatre(theatre_id):
+    role = session.get("role")
+    if role!="admin":
+        flash("only admin can edit theatre accounts")
+        return redirect('/')
+    theatre = Theatre.query.filter_by(id=theatre_id).first()
+    if request.method == "GET":
+        return render_template('edit_theatre.html',theatre=theatre)
+    else:
+        form_theatre_name = request.form.get("theatre_name")
+        form_location = request.form.get("location")
+        form_franchise = request.form.get("franchise")
+
+        theatre.theatre_name = form_theatre_name
+        theatre.location = form_location
+        theatre.franchise = form_franchise
+
+        db.session.commit()
+        flash("theatre details updated successfully")
+        return redirect('/dashboard')
+
+@app.route('/delete_theatre/<theatre_id>',methods=["GET"])
+def delete_theatre(theatre_id):
+    role = session.get("role")
+    if role!="admin":
+        flash("only admin can delete theatre accounts")
+        return redirect('/')
+    theatre = Theatre.query.filter_by(id=theatre_id).first()
+    db.session.delete(theatre)
+    db.session.commit()
+    user = User.query.filter_by(id=theatre.owner_id).first()
+    db.session.delete(user)
+    db.session.commit()
+    flash("theatre deleted successfully")
+    return redirect('/dashboard')
 
 
 def auto_admin_creation():
